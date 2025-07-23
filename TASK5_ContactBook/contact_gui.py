@@ -1,10 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
-
-# === Data Storage (in-memory list) ===
+#Data Storage
 contacts = []
-
-# === Functions ===
 
 def add_contact():
     name = name_entry.get().strip()
@@ -16,7 +13,7 @@ def add_contact():
         messagebox.showerror("Error", "Name and Phone are required.")
         return
 
-    # Check for duplicate name
+    #for duplicate name
     for contact in contacts:
         if contact['name'].lower() == name.lower():
             messagebox.showerror("Error", "Contact with this name already exists.")
@@ -113,19 +110,17 @@ def search_contact():
     if contact_list.size() == 0:
         messagebox.showinfo("Search", "No contacts found.")
 
-# === GUI ===
-
 root = tk.Tk()
 root.title("Contact Management System")
 
-# Frames
+#Frames
 left_frame = tk.Frame(root, padx=10, pady=10)
 left_frame.grid(row=0, column=0, sticky="n")
 
 right_frame = tk.Frame(root, padx=10, pady=10)
 right_frame.grid(row=0, column=1, sticky="n")
 
-# Input fields
+#Input fields
 tk.Label(left_frame, text="Name").grid(row=0, column=0, sticky="w")
 tk.Label(left_frame, text="Phone").grid(row=1, column=0, sticky="w")
 tk.Label(left_frame, text="Email").grid(row=2, column=0, sticky="w")
@@ -141,20 +136,20 @@ phone_entry.grid(row=1, column=1, pady=2)
 email_entry.grid(row=2, column=1, pady=2)
 address_entry.grid(row=3, column=1, pady=2)
 
-# Buttons
+#Buttons
 tk.Button(left_frame, text="Add Contact", width=15, command=add_contact).grid(row=4, column=0, pady=5)
 tk.Button(left_frame, text="Load Selected", width=15, command=load_contact).grid(row=4, column=1, pady=5)
 tk.Button(left_frame, text="Update Contact", width=15, command=update_contact).grid(row=5, column=0, pady=5)
 tk.Button(left_frame, text="Delete Contact", width=15, command=delete_contact).grid(row=5, column=1, pady=5)
 tk.Button(left_frame, text="Clear Fields", width=32, command=clear_fields).grid(row=6, column=0, columnspan=2, pady=5)
 
-# Search bar
+#Search bar
 tk.Label(left_frame, text="Search by Name or Phone:").grid(row=7, column=0, sticky="w")
 search_entry = tk.Entry(left_frame, width=20)
 search_entry.grid(row=7, column=1, pady=2, sticky="w")
 tk.Button(left_frame, text="Search", width=32, command=search_contact).grid(row=8, column=0, columnspan=2, pady=5)
 
-# Contact List
+#Contact List
 tk.Label(right_frame, text="Saved Contacts").pack(anchor="w")
 contact_list = tk.Listbox(right_frame, width=50, height=20)
 contact_list.pack()
